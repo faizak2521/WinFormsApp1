@@ -129,21 +129,18 @@ namespace WinFormsApp1
 
         private void summaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // finalize current order properly using your existing logic
             if (totalDecimal != 0m)
                 newOrderToolStripMenuItem_Click(sender, e);
 
             if (customerCountInteger > 0)
             {
-                decimal averageDecimal = grandTotalDecimal / customerCountInteger;
+                SummaryForm summaryForm = new SummaryForm(
+                    grandTotalDecimal,
+                    customerCountInteger
+                );
 
-                string message =
-                    "Number of Orders: " + customerCountInteger + Environment.NewLine +
-                    "Total Sales: " + grandTotalDecimal.ToString("c") + Environment.NewLine +
-                    "Average Sales: " + averageDecimal.ToString("c");
-
-                MessageBox.Show(message, "Coffee Sales Summary",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                summaryForm.ShowDialog();
             }
             else
             {
@@ -161,13 +158,8 @@ namespace WinFormsApp1
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string message =
-                "R and R Billing" + Environment.NewLine +
-                "Programmed by Faiza";
-
-            MessageBox.Show(message, "About",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            AboutBox1 aboutForm = new AboutBox1();
+            aboutForm.ShowDialog();
         }
 
         private void fontToolStripMenuItem_Click(object sender, EventArgs e)
